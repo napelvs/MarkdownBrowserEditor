@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "jsdelivr",
+      "library": "@toast-ui/editor@2.5.1",
+      "destination": "wwwroot/lib/editor"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "codemirror@5.58.3",
+      "destination": "wwwroot/lib/codemirror"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@microsoft/signalr@latest",
+      "destination": "wwwroot/lib/signalr",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "darkreader@4.9.26",
+      "destination": "wwwroot/lib/darkreader"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "concat-stream@2.0.0",
+      "destination": "wwwroot/lib/concat-stream"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "markdown-pdf@10.0.0",
+      "destination": "wwwroot/lib/markdown-pdf"
+    }
+  ]
+}

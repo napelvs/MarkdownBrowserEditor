@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EditorHub.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "Hubs\\EditorHub.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>EditorHub.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> Microsoft.AspNetCore.SignalR;
+<span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> System.Linq;
+<span class="hljs-keyword">using</span> System.Threading.Tasks;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MarkdownBrowserEditor.Hubs</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">EditorHub</span> : <span class="hljs-title">Hub</span>
+    {
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>public async Task SendMessage(string markdownText)
+{
+await Clients.All.SendAsync(&quot;ReceiveMessage&quot;, markdownText);
+}</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Dictionary&lt;<span class="hljs-keyword">string</span>, <span class="hljs-keyword">string</span>&gt; connectionsNgroup = <span class="hljs-keyword">new</span> Dictionary&lt;<span class="hljs-keyword">string</span>, <span class="hljs-keyword">string</span>&gt;();
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">OnConnectedAsync</span>(<span class="hljs-params"></span>)</span>
+        {
+            <span class="hljs-keyword">await</span> <span class="hljs-keyword">base</span>.OnConnectedAsync();
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">OnDisconnectedAsync</span>(<span class="hljs-params">Exception exception</span>)</span>
+        {
+            <span class="hljs-keyword">if</span> (connectionsNgroup.ContainsKey(Context.ConnectionId))
+            {
+                <span class="hljs-keyword">await</span> Groups.RemoveFromGroupAsync(Context.ConnectionId, connectionsNgroup[Context.ConnectionId]);
+                connectionsNgroup.Remove(Context.ConnectionId);
+            }
+            <span class="hljs-keyword">await</span> <span class="hljs-keyword">base</span>.OnDisconnectedAsync(exception);
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">SendMessage</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> text</span>)</span>
+        {
+            <span class="hljs-keyword">if</span> (connectionsNgroup.ContainsKey(Context.ConnectionId))
+            {
+                <span class="hljs-keyword">await</span> Clients.OthersInGroup(connectionsNgroup[Context.ConnectionId]).SendAsync(<span class="hljs-string">"ReceiveMessage"</span>, text);
+            }
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task <span class="hljs-title">JoinGroup</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> <span class="hljs-keyword">group</span></span>)</span>
+        {
+            <span class="hljs-keyword">if</span> (connectionsNgroup.ContainsKey(Context.ConnectionId))
+            {
+                <span class="hljs-keyword">await</span> Groups.RemoveFromGroupAsync(Context.ConnectionId, connectionsNgroup[Context.ConnectionId]);
+                connectionsNgroup.Remove(Context.ConnectionId);
+            }
+            connectionsNgroup.Add(Context.ConnectionId, <span class="hljs-keyword">group</span>);
+            <span class="hljs-keyword">await</span> Groups.AddToGroupAsync(Context.ConnectionId, <span class="hljs-keyword">group</span>);
+        }
+    }
+}
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

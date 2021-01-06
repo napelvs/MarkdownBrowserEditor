@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>libman.json</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = "libman.json";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>libman.json</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="json">{
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0"</span>,
+  <span class="hljs-attr">"defaultProvider"</span>: <span class="hljs-string">"cdnjs"</span>,
+  <span class="hljs-attr">"libraries"</span>: [
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"jsdelivr"</span>,
+      <span class="hljs-attr">"library"</span>: <span class="hljs-string">"@toast-ui/editor@2.5.1"</span>,
+      <span class="hljs-attr">"destination"</span>: <span class="hljs-string">"wwwroot/lib/editor"</span>
+    },
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"jsdelivr"</span>,
+      <span class="hljs-attr">"library"</span>: <span class="hljs-string">"codemirror@5.58.3"</span>,
+      <span class="hljs-attr">"destination"</span>: <span class="hljs-string">"wwwroot/lib/codemirror"</span>
+    },
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"unpkg"</span>,
+      <span class="hljs-attr">"library"</span>: <span class="hljs-string">"@microsoft/signalr@latest"</span>,
+      <span class="hljs-attr">"destination"</span>: <span class="hljs-string">"wwwroot/lib/signalr"</span>,
+      <span class="hljs-attr">"files"</span>: [
+        <span class="hljs-string">"dist/browser/signalr.js"</span>,
+        <span class="hljs-string">"dist/browser/signalr.min.js"</span>
+      ]
+    },
+    {
+      <span class="hljs-attr">"provider"</span>: <span class="hljs-string">"unpkg"</span>,
+      <span class="hljs-attr">"library"</span>: <span class="hljs-string">"darkreader@4.9.26"</span>,
+      <span class="hljs-attr">"destination"</span>: <span class="hljs-string">"wwwroot/lib/darkreader"</span>
+    }
+  ]
+}
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

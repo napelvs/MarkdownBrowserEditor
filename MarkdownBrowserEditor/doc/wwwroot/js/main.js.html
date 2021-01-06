@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>main.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../";
+    var thisFile = "wwwroot\\js\\main.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>main.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+<div class="dox">
+<div class="summary">
+<p>Template Name: SoftLand - v2.2.0
+Template URL: https://bootstrapmade.com/softland-bootstrap-app-landing-page-template/
+Author: BootstrapMade.com
+License: https://bootstrapmade.com/license/</p>
+</div>
+<div class="body">
+</div>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$</span>) </span>{<span class="hljs-meta">
+  "use strict"</span>;
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>Back to top button</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">  $(<span class="hljs-built_in">window</span>).scroll(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> ($(<span class="hljs-keyword">this</span>).scrollTop() &gt; <span class="hljs-number">100</span>) {
+      $(<span class="hljs-string">'.back-to-top'</span>).fadeIn(<span class="hljs-string">'slow'</span>);
+    } <span class="hljs-keyword">else</span> {
+      $(<span class="hljs-string">'.back-to-top'</span>).fadeOut(<span class="hljs-string">'slow'</span>);
+    }
+  });
+  $(<span class="hljs-string">'.back-to-top'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-string">'html, body'</span>).animate({
+      <span class="hljs-attr">scrollTop</span>: <span class="hljs-number">0</span>
+    }, <span class="hljs-number">1500</span>, <span class="hljs-string">'easeInOutExpo'</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  });
+
+  <span class="hljs-keyword">var</span> siteMenuClone = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-string">'.js-clone-nav'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>);
+      $<span class="hljs-keyword">this</span>.clone().attr(<span class="hljs-string">'class'</span>, <span class="hljs-string">'site-nav-wrap'</span>).appendTo(<span class="hljs-string">'.site-mobile-menu-body'</span>);
+    });
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> counter = <span class="hljs-number">0</span>;
+      $(<span class="hljs-string">'.site-mobile-menu .has-children'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>);
+        $<span class="hljs-keyword">this</span>.prepend(<span class="hljs-string">'&lt;span class="arrow-collapse collapsed"&gt;'</span>);
+        $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'.arrow-collapse'</span>).attr({
+          <span class="hljs-string">'data-toggle'</span>: <span class="hljs-string">'collapse'</span>,
+          <span class="hljs-string">'data-target'</span>: <span class="hljs-string">'#collapseItem'</span> + counter,
+        });
+        $<span class="hljs-keyword">this</span>.find(<span class="hljs-string">'&gt; ul'</span>).attr({
+          <span class="hljs-string">'class'</span>: <span class="hljs-string">'collapse'</span>,
+          <span class="hljs-string">'id'</span>: <span class="hljs-string">'collapseItem'</span> + counter,
+        });
+        counter++;
+      });
+    }, <span class="hljs-number">1000</span>);
+    $(<span class="hljs-string">'body'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'.arrow-collapse'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+      <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">if</span> ($<span class="hljs-keyword">this</span>.closest(<span class="hljs-string">'li'</span>).find(<span class="hljs-string">'.collapse'</span>).hasClass(<span class="hljs-string">'show'</span>)) {
+        $<span class="hljs-keyword">this</span>.removeClass(<span class="hljs-string">'active'</span>);
+      } <span class="hljs-keyword">else</span> {
+        $<span class="hljs-keyword">this</span>.addClass(<span class="hljs-string">'active'</span>);
+      }
+      e.preventDefault();
+    });
+    $(<span class="hljs-built_in">window</span>).resize(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>),
+        w = $<span class="hljs-keyword">this</span>.width();
+      <span class="hljs-keyword">if</span> (w &gt; <span class="hljs-number">768</span>) {
+        <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'body'</span>).hasClass(<span class="hljs-string">'offcanvas-menu'</span>)) {
+          $(<span class="hljs-string">'body'</span>).removeClass(<span class="hljs-string">'offcanvas-menu'</span>);
+        }
+      }
+    })
+    $(<span class="hljs-string">'body'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'.js-menu-toggle'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+      <span class="hljs-keyword">var</span> $<span class="hljs-keyword">this</span> = $(<span class="hljs-keyword">this</span>);
+      e.preventDefault();
+      <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'body'</span>).hasClass(<span class="hljs-string">'offcanvas-menu'</span>)) {
+        $(<span class="hljs-string">'body'</span>).removeClass(<span class="hljs-string">'offcanvas-menu'</span>);
+        $(<span class="hljs-string">'body'</span>).find(<span class="hljs-string">'.js-menu-toggle'</span>).removeClass(<span class="hljs-string">'active'</span>);
+      } <span class="hljs-keyword">else</span> {
+        $(<span class="hljs-string">'body'</span>).addClass(<span class="hljs-string">'offcanvas-menu'</span>);
+        $(<span class="hljs-string">'body'</span>).find(<span class="hljs-string">'.js-menu-toggle'</span>).addClass(<span class="hljs-string">'active'</span>);
+      }
+    })
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>click outisde offcanvas</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    $(<span class="hljs-built_in">document</span>).mouseup(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+      <span class="hljs-keyword">var</span> container = $(<span class="hljs-string">".site-mobile-menu"</span>);
+      <span class="hljs-keyword">if</span> (!container.is(e.target) &amp;&amp; container.has(e.target).length === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'body'</span>).hasClass(<span class="hljs-string">'offcanvas-menu'</span>)) {
+          $(<span class="hljs-string">'body'</span>).removeClass(<span class="hljs-string">'offcanvas-menu'</span>);
+          $(<span class="hljs-string">'body'</span>).find(<span class="hljs-string">'.js-menu-toggle'</span>).removeClass(<span class="hljs-string">'active'</span>);
+        }
+      }
+    });
+  };
+  siteMenuClone();
+  <span class="hljs-keyword">var</span> siteScroll = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-built_in">window</span>).scroll(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> st = $(<span class="hljs-keyword">this</span>).scrollTop();
+      <span class="hljs-keyword">if</span> (st &gt; <span class="hljs-number">100</span>) {
+        $(<span class="hljs-string">'.js-sticky-header'</span>).addClass(<span class="hljs-string">'shrink'</span>);
+      } <span class="hljs-keyword">else</span> {
+        $(<span class="hljs-string">'.js-sticky-header'</span>).removeClass(<span class="hljs-string">'shrink'</span>);
+      }
+    })
+  };
+  siteScroll();
+  <span class="hljs-keyword">var</span> siteSticky = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-string">".js-sticky-header"</span>).sticky({
+      <span class="hljs-attr">topSpacing</span>: <span class="hljs-number">0</span>
+    });
+  };
+  siteSticky();
+  <span class="hljs-keyword">var</span> siteOwlCarousel = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    $(<span class="hljs-string">'.testimonial-carousel'</span>).owlCarousel({
+      <span class="hljs-attr">center</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">items</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-attr">loop</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">margin</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">autoplay</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">smartSpeed</span>: <span class="hljs-number">1000</span>,
+    });
+  };
+  siteOwlCarousel();
+
+  $(<span class="hljs-built_in">window</span>).on(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    AOS.init({
+      <span class="hljs-attr">easing</span>: <span class="hljs-string">'ease'</span>,
+      <span class="hljs-attr">duration</span>: <span class="hljs-number">1000</span>,
+      <span class="hljs-attr">once</span>: <span class="hljs-literal">true</span>
+    });
+  });
+
+})(jQuery);
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

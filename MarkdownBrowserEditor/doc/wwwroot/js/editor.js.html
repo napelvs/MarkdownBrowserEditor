@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>editor.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../../doc-style.css" />
+  <script src="../../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../../";
+    var thisFile = "wwwroot\\js\\editor.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>editor.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">﻿<span class="hljs-keyword">var</span> content = <span class="hljs-string">'![image](https://uicdn.toast.com/toastui/img/tui-editor-bi.png)'</span>
+    + <span class="hljs-string">'\n\n# Awesome Editor!'</span>
+    + <span class="hljs-string">'\n\nIt has been _released as opensource in 2018_ and has ~~continually~~evolved to ** receive 10k GitHub ⭐️ Stars **.'</span>
+    + <span class="hljs-string">'\n\n## Create Instance'</span>
+    + <span class="hljs-string">'\n\nYou can create an instance with the following code and use`getHtml()` and`getMarkdown()` of the[Editor](https://github.com/nhn/tui.editor).'</span>
+    + <span class="hljs-string">'\n\n&gt; See the table below for default options'</span>
+    + <span class="hljs-string">'\n\n&gt; &gt; More API information can be found in the document'</span>
+    + <span class="hljs-string">'\n| name | type | description |'</span>
+    + <span class="hljs-string">'\n| --- | --- | --- |'</span>
+    + <span class="hljs-string">'\n| el | `HTMLElement` | container element |'</span>
+    + <span class="hljs-string">'\n\n## Features'</span>;
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>Editor. If changing this file, make sure to bundle it using browserify
+Run the following command in the command line. 'npm run build_editor'</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">const</span> Editor = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/toastui-editor'</span>);
+
+<span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> Editor({
+    <span class="hljs-attr">el</span>: <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#editor'</span>),
+    <span class="hljs-attr">height</span>: <span class="hljs-string">'800px'</span>,
+    <span class="hljs-attr">initialEditType</span>: <span class="hljs-string">'markdown'</span>,
+    <span class="hljs-attr">previewStyle</span>: <span class="hljs-string">'vertical'</span>,
+    <span class="hljs-attr">initialValue</span>: content
+});
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>Real-time collaborate server</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-meta">'use strict'</span>;
+<span class="hljs-keyword">var</span> signalR = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/signalr'</span>);
+
+<span class="hljs-keyword">var</span> connection = <span class="hljs-keyword">new</span> signalR.HubConnectionBuilder()
+    .configureLogging(signalR.LogLevel.Debug)
+    .withUrl(<span class="hljs-string">'/editorhub'</span>)
+    .build();
+
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>On button click, connect the user to the specified group. In a group mutiple users can meet and edit together</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">var</span> group = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"groupName"</span>);
+<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'joinGroupButton'</span>).addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<p>Start connection and make sure the server is successfully connected. Also, inform the user</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">    <span class="hljs-keyword">var</span> serverStatus = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'serverStatus'</span>);
+    connection.start().then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        serverStatus.classList.add(<span class="hljs-string">'badge-success'</span>);
+        serverStatus.innerHTML = <span class="hljs-string">'Connected to group '</span> + group.value;
+        connection.invoke(<span class="hljs-string">"JoinGroup"</span>, group.value).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> <span class="hljs-built_in">console</span>.error(err));
+    }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+        serverStatus.classList.add(<span class="hljs-string">'badge-danger'</span>);
+        serverStatus.innerHTML = <span class="hljs-string">'Not Connected'</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error(err.toString());
+    });
+})
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6"></a>
+</div>
+<p>On user edit, the markdown is changed</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">connection.on(<span class="hljs-string">'ReceiveMessage'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">markdownText</span>) </span>{
+    editor.setMarkdown(markdownText, <span class="hljs-literal">true</span>);completeClose
+})
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7"></a>
+</div>
+<p>When a user presses a button, the function gets the text and progagates it to the hub, where is received by the &quot;ReceiveMessage&quot; function</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'editor'</span>).addEventListener(<span class="hljs-string">'keyup'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) </span>{
+    <span class="hljs-keyword">var</span> markdownText = editor.getMarkdown();
+    connection.invoke(<span class="hljs-string">'SendMessage'</span>, markdownText).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">console</span>.error(err.toString());
+    });
+    event.preventDefault();
+})
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
