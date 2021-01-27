@@ -1,15 +1,25 @@
 ﻿// Dark Reader
 const DarkReader = require('../lib/darkreader');
 
-var darkModeButton = document.getElementById('enableDarkMode');
 var lightModeButton = document.getElementById('enableLightMode');
+DarkReader.enable();
 
-darkModeButton.addEventListener('click', function () {
-    DarkReader.enable();
-    darkModeButton.classList.toggle('active');
-});
+if (DarkReader.isEnabled()) {
+    lightModeButton.innerHTML = "asd";
+    console.log("asd");
+}
 
-lightModeButton.addEventListener('click', function () {
-    DarkReader.disable();
-    lightModeButton.classList.toggle('active');
-});
+//var darkModeButton = document.getElementById('enableDarkMode');
+//var lightModeButton = document.getElementById('enableLightMode');
+
+//darkModeButton.addEventListener('click', function () {
+//    DarkReader.enable();
+//    darkModeButton.classList.toggle('active');
+//    darkModeButton.innerHTML = "Light Mode Activated";
+//});
+
+//lightModeButton.addEventListener('click', function () {
+//    DarkReader.disable();
+//    lightModeButton.classList.toggle('active');
+//    lightModeButton.innerHTML = "Night Mode Activated";
+//});
